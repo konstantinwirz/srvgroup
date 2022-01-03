@@ -49,7 +49,7 @@ func (g Group) Run(servers ...Server) []error {
 		}()
 	}
 
-	interrupted := make(chan os.Signal)
+	interrupted := make(chan os.Signal, 1)
 	signal.Notify(interrupted, g.Signals...)
 
 	// wait for the first server to stop or
