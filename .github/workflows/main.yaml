@@ -14,6 +14,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Vet
+        run: go vet ./...
+
+      - name: Lint
+        run: golint ./...
+
+      - name: Staticcheck
+        uses: dominikh/staticcheck-action@v1.1.0
+        with:
+          install-go: false
+          version: "2021.1.2"
+
       - name: Test
         env:
           GOPROXY: "https://proxy.golang.org"
